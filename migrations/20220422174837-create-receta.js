@@ -11,6 +11,15 @@ module.exports = {
       nombre: {
         type: Sequelize.STRING
       },
+      ingredientes: {
+        type: Sequelize.STRING
+      },
+      preparacion: {
+        type: Sequelize.STRING
+      },
+      imagen: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
