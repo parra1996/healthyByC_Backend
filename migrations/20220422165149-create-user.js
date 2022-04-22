@@ -11,6 +11,35 @@ module.exports = {
       nombre: {
         type: Sequelize.STRING
       },
+      apellido: {
+        type: Sequelize.STRING
+      },
+      fecha_nacimiento: {
+        type: Sequelize.DATE
+      },
+      edad: {
+        type: Sequelize.INTEGER
+      },
+      profesion: {
+        type: Sequelize.STRING
+      },
+      sexo: {
+        type: Sequelize.BOOLEAN
+      },
+      objetivos_dieteticos: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+      },
+      contrasena: {
+        type: Sequelize.STRING
+      },
+      rol: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

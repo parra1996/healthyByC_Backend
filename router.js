@@ -3,11 +3,11 @@ const router = require('express').Router();
 
 
 const UserRouter = require('./views/UserRouter');
-// const PeliculasRouter = require('./views/PeliculasRouter');
+const RecetasRouter = require('./views/RecetasRouter');
 // const PedidosRouter = require('./views/PedidosRouter');
 
 router.use('/users', UserRouter);
-// router.use('/peliculas', PeliculasRouter);
+router.use('/recetas', RecetasRouter);
 // router.use('/pedidos', PedidosRouter);
 
 module.exports = router;
