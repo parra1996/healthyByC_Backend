@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const RecetasController = {};
 
 RecetasController.holi = (req, res) => {
-    res.send('holi');
+    res.send('holi soy recetas');
 }
 
 module.exports = RecetasController;
