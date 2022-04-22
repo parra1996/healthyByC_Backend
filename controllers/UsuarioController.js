@@ -1,13 +1,13 @@
-// const { Usuario } = require('../models/index');
+// const { user } = require('../models/index');
 const { Op } = require("sequelize");
 const bcrypt = require('bcrypt');
 // const authConfig = require('../config/auth');
 // const jwt = require('jsonwebtoken');
 
-const UsuarioController = {};
+const UserController = {};
 
-UsuarioController.holi = (req, res) => {
+UserController.holi = (req, res) => {
     res.send('holi');
 }
 
-module.exports = UsuarioController;
+module.exports = UserController;

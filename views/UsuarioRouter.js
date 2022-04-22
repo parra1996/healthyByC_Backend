@@ -4,11 +4,11 @@ const router = express.Router();
 // const auth = require("../middlewares/auth");
 // const isAdmin = require("../middlewares/isAdmin");
 
-const UsuarioController = require('../controllers/UsuarioController');
+const UserController = require('../controllers/UserController');
 
 //CRUD RESTful
 
-router.get('/',  UsuarioController.holi);
+router.get('/',  UserController.holi);
 
 
 
