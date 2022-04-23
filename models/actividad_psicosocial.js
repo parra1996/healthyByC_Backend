@@ -14,7 +14,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Actividad_psicosocial.init({
-    numero_comidas_diarias: DataTypes.STRING
+
+    horas_sueño: DataTypes.INTEGER,
+    actividades: DataTypes.STRING,
+    tipo_actividad: DataTypes.STRING,
+    tipo_actividad_laboral: DataTypes.STRING,
+    numero_evacuaciones_diarios: DataTypes.INTEGER,
+    estres_diario: DataTypes.STRING,
+    frecuencia_bebidas_alcoholicas: DataTypes.STRING,
+    fumador: DataTypes.BOOLEAN,
+
   }, {
     sequelize,
     modelName: 'Actividad_psicosocial',
