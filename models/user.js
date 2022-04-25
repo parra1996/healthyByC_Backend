@@ -26,7 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     objetivos_dieteticos: DataTypes.STRING,
     email: DataTypes.STRING,
     contrasena: DataTypes.STRING,
-    rol: DataTypes.BOOLEAN
+    rol: DataTypes.BOOLEAN,
+    timestamps: false
+
   }, {
     sequelize,
     modelName: 'User',

@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   Tipo_actividad_laboral.init({
     frecuencia: DataTypes.STRING,
     duracion: DataTypes.STRING,
+    timestamps: false
+
   }, {
     sequelize,
     modelName: 'Tipo_actividad_laboral',

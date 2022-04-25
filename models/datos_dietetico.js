@@ -34,6 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     tratamiento_farmacologico_a: DataTypes.STRING,
     patologia_medica: DataTypes.BOOLEAN,
     primera_dieta: DataTypes.BOOLEAN,
+    timestamps: false
+
 
   }, {
     sequelize,

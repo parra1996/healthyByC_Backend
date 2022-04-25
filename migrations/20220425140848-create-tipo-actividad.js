@@ -10,6 +10,12 @@ module.exports = {
       },
       tipo_actividad: {
         type: Sequelize.STRING,
+        // references: {
+        //   model: 'actividad_psicosocial',
+        //   key: 'tipo_actividadID'
+        // },
+        // onUpdate: 'CASCADE',
+        // onDelete: 'CASCADE'
       },
       duracion: {
         type: Sequelize.STRING

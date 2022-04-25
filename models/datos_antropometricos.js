@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     cintura: DataTypes.FLOAT,
     cadera: DataTypes.FLOAT,
     muslo: DataTypes.FLOAT,
+    timestamps: false
+
   }, {
     sequelize,
     modelName: 'Datos_antropometricos',

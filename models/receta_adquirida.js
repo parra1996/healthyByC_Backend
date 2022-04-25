@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   Receta_adquirida.init({
     recetaId: DataTypes.INTEGER,
     usuarioId: DataTypes.INTEGER,
+    timestamps: false
+
   }, {
     sequelize,
     modelName: 'Receta_adquirida',

@@ -10,14 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-       
+      this.belongsTo(models.actividad_psicosocial, {
+        foreignKey: 'tipo_actividadID',
+      });
     }
   }
   Tipo_actividad.init({
-    tipo_actividad: DataTypes.STRING,
+    tipo_actividadID: DataTypes.STRING,
     duracion: DataTypes.STRING,
     frecuencia_semanal: DataTypes.STRING,
     momento_diario_realizado: DataTypes.STRING,
+    timestamps: false
+
   }, {
     sequelize,
     modelName: 'Tipo_actividad',
