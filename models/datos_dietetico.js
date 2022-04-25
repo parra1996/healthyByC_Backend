@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Datos_dietetico.init({
-    numero_comidas_diarias: DataTypes.INT,
+    numero_comidas_diarias: DataTypes.INTEGER,
     preferencias: DataTypes.STRING,
     nivel_apetito_diario: DataTypes.STRING,
     horas_hambre_mas_intensidad: DataTypes.STRING,

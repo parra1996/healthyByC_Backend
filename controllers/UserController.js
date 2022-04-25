@@ -1,10 +1,9 @@
-const User = require('../models/User');
-const {
-    Op
-} = require("sequelize");
+const { User } = require('../models/index');
+
+const {Op} = require("sequelize");
 const bcrypt = require('bcrypt');
 const authConfig = require('../config/auth');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const UserController = {};
 
