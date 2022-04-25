@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     nombre: DataTypes.STRING,
     apellido: DataTypes.INTEGER,
-    fecha_nacimiento: DataTypes.DATE,
+    fecha_nacimiento: DataTypes.STRING,
     edad: DataTypes.INTEGER,
     profesion: DataTypes.STRING,
     sexo: DataTypes.BOOLEAN,
@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     contrasena: DataTypes.STRING,
     rol: DataTypes.BOOLEAN,
-    timestamps: false
 
   }, {
     sequelize,

@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       fecha_nacimiento: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       edad: {
         type: Sequelize.INTEGER

@@ -22,12 +22,12 @@ module.exports = {
       },
       tipo_actividadID: {
         type: Sequelize.STRING,
-        references: {
-          model: 'tipo_actividad',
-          key: 'tipo_actividadID'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        // references: {
+        //   model: 'tipo_actividad',
+        //   key: 'tipo_actividadID'
+        // },
+        // onUpdate: 'CASCADE',
+        // onDelete: 'CASCADE'
       },
       tipo_actividad_laboral: {
         type: Sequelize.STRING
