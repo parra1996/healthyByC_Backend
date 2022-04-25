@@ -6,8 +6,15 @@ const bcrypt = require('bcrypt');
 
 const RecetasController = {};
 
-RecetasController.holi = (req, res) => {
-    res.send('holi soy recetas');
+RecetasController.get_all = (req, res) => {
+    try {
+        Recetas.findAll()
+            .then(data => {
+                res.send(data)
+            });
+    } catch (error) {
+        res.send(error)
+    }
 }
 
 module.exports = RecetasController;

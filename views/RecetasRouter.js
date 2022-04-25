@@ -3,6 +3,6 @@ const router = express.Router();
 
 const RecetasController = require('../controllers/RecetasController');
 
-router.get('/',  RecetasController.holi);
+router.get('/',  RecetasController.get_all);
 
 module.exports = router;

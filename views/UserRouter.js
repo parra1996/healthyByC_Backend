@@ -8,13 +8,13 @@ const UserController = require('../controllers/UserController');
 
 //CRUD RESTful
 
-router.get('/',  UserController.get_all);
+router.get('/',auth ,  UserController.get_all);
 
 router.post('/login',  UserController.login);
 
 router.post('/register',  UserController.register);
 
-router.delete('/:id',  UserController.delete_by_id);
+router.delete('/:id',isAdmin,  UserController.delete_by_id);
 
 
 
