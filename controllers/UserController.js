@@ -1,13 +1,17 @@
-const { User } = require('../models/index');
+const {
+    User
+} = require('../models/index');
 
-const {Op} = require("sequelize");
+const {
+    Op
+} = require("sequelize");
 const bcrypt = require('bcrypt');
 const authConfig = require('../config/auth');
 const jwt = require('jsonwebtoken');
 
 const UserController = {};
 
-UserController.getAll = (req, res) => {
+UserController.get_all = (req, res) => {
     try {
         User.findAll()
             .then(data => {
@@ -19,7 +23,7 @@ UserController.getAll = (req, res) => {
 }
 
 UserController.register = (req, res) => {
-    
+
     let nombre = req.body.nombre;
     let edad = req.body.edad;
     let apellido = req.body.apellido;
@@ -29,52 +33,50 @@ UserController.register = (req, res) => {
     let sexo = req.body.sexo;
     let objetivos_dieteticos = req.body.objetivos_dieteticos;
     let rol = req.body.rol;
-    console.log("antes de encriptar",req.body.contrasena);
-    let contrasena = bcrypt.hashSync(req.body.contrasena, Number.parseInt(authConfig.rounds)); 
-    
-    console.log("despues de encriptar",contrasena);
-    
-    if(sexo == "hombre"){
+    console.log("antes de encriptar", req.body.contrasena);
+    let contrasena = bcrypt.hashSync(req.body.contrasena, Number.parseInt(authConfig.rounds));
+
+    console.log("despues de encriptar", contrasena);
+
+    if (sexo == "hombre") {
         sexo = true;
-    }else {
+    } else {
         sexo = false;
     }
     console.log(sexo);
-    
+
     User.findAll({
-        where : {
-            [Op.or] : [
-                {
-                    email : {
-                        [Op.like] : email
-                    }
-                },
-            ]
+        where: {
+            [Op.or]: [{
+                email: {
+                    [Op.like]: email
+                }
+            }, ]
         }
 
     }).then(datosRepetidos => {
 
-        if(datosRepetidos == 0){
+        if (datosRepetidos == 0) {
 
-                User.create({
-                nombre: nombre,
-                apellido: apellido,
-                fecha_nacimiento: fecha_nacimiento,
-                edad: edad,
-                profesion: profesion,
-                sexo: sexo,
-                objetivos_dieteticos: objetivos_dieteticos,
-                email: email,
-                contrasena: contrasena,
-                rol : rol
-            }).then(usuario => {
-                res.send(`${usuario.nombre}, te has registrado con exito`);
-            })
-            .catch((error) => {
-                res.send(error);
-            });
+            User.create({
+                    nombre: nombre,
+                    apellido: apellido,
+                    fecha_nacimiento: fecha_nacimiento,
+                    edad: edad,
+                    profesion: profesion,
+                    sexo: sexo,
+                    objetivos_dieteticos: objetivos_dieteticos,
+                    email: email,
+                    contrasena: contrasena,
+                    rol: rol
+                }).then(usuario => {
+                    res.send(`${usuario.nombre}, te has registrado con exito`);
+                })
+                .catch((error) => {
+                    res.send(error);
+                });
 
-        }else {
+        } else {
             res.send("El usuario con ese e-mail ya existe en nuestra base de datos");
         }
     }).catch(error => {
@@ -83,5 +85,67 @@ UserController.register = (req, res) => {
 
 
 }
+
+UserController.login = (req, res) => {
+    
+    let email = req.body.email;
+    let contrasena = req.body.contrasena;
+
+    User.findOne({
+        where : {email : email}
+    }).then(element => {
+
+        if(!element){
+            res.send("Usuario o contraseña inválido");
+        }else {
+            //el usuario existe, por lo tanto, vamos a comprobar
+            //si el contrasena es correcto
+
+            if (bcrypt.compareSync(contrasena, element.contrasena)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
+
+                console.log(element.contrasena);
+
+                let token = jwt.sign({ usuario: element }, authConfig.secret, {
+                    expiresIn: authConfig.expires
+                });
+
+                res.json({
+                    usuario: element,
+                    token: token
+                })
+            } else {
+                res.status(401).json({ msg: "Usuario o contraseña inválidos" });
+            }
+        };
+
+
+    }).catch(error => {
+        res.send(error);
+    })
+}
+
+UserController.delete_by_id = (req, res) => {
+
+    let id = req.params.id;
+
+    try {
+
+        User.destroy({
+                where: {
+                    id: id
+                },
+                truncate: false
+            })
+            .then(usuarioEliminado => {
+                console.log(usuarioEliminado);
+                res.send(`El usuario con la id ${id} ha sido eliminado`);
+            })
+
+    } catch (error) {
+        res.send(error);
+    }
+
+}
+
 
 module.exports = UserController;

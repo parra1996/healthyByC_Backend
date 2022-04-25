@@ -8,9 +8,16 @@ const UserController = require('../controllers/UserController');
 
 //CRUD RESTful
 
-router.get('/',  UserController.getAll);
+router.get('/',  UserController.get_all);
+
+router.post('/login',  UserController.login);
 
 router.post('/register',  UserController.register);
+
+router.delete('/:id',  UserController.delete_by_id);
+
+
+
 
 
 
