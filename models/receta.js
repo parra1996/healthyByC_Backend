@@ -20,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
     ingredientes: DataTypes.STRING,
     preparacion: DataTypes.STRING,
     imagen: DataTypes.STRING,
-    timestamps: false
 
   }, {
     sequelize,
