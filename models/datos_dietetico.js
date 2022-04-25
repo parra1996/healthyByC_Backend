@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Datos_dietetico.init({
-    numero_comidas_diarias: DataTypes.STRING,
+    numero_comidas_diarias: DataTypes.INT,
+    preferencias: DataTypes.STRING,
     nivel_apetito_diario: DataTypes.STRING,
     horas_hambre_mas_intensidad: DataTypes.STRING,
     que_suele_comer_diario: DataTypes.STRING,
@@ -26,6 +27,13 @@ module.exports = (sequelize, DataTypes) => {
     alimentos_preferibles_a_su_plan: DataTypes.STRING,
     lugares_habituales_de_compra: DataTypes.STRING,
     alergias: DataTypes.BOOLEAN,
+    alergia_a: DataTypes.STRING,
+    intolerancia: DataTypes.BOOLEAN,
+    suplemento_alimenticio: DataTypes.BOOLEAN,
+    tratamiento_farmacologico: DataTypes.BOOLEAN,
+    tratamiento_farmacologico_a: DataTypes.STRING,
+    patologia_medica: DataTypes.BOOLEAN,
+    primera_dieta: DataTypes.BOOLEAN,
 
   }, {
     sequelize,

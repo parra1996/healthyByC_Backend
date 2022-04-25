@@ -15,7 +15,10 @@ module.exports = {
         onDelete: 'CASCADE'
       },
       numero_comidas_diarias: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
+      },
+      preferncias: {
+        type: Sequelize.INTEGER
       },
       nivel_apetito_diario: {
         type: Sequelize.STRING
@@ -42,6 +45,27 @@ module.exports = {
         type: Sequelize.STRING
       },
       alergias: {
+        type: Sequelize.BOOLEAN
+      },
+      alergias_a: {
+        type: Sequelize.STRING
+      },
+      intolerancia: {
+        type: Sequelize.BOOLEAN
+      },
+      suplemento_alimenticio: {
+        type: Sequelize.BOOLEAN
+      },
+      tratamiento_farmacologico: {
+        type: Sequelize.BOOLEAN
+      },
+      tratamiento_farmacologico_a: {
+        type: Sequelize.STRING
+      },
+      patologia_medica: {
+        type: Sequelize.BOOLEAN
+      },
+      primera_dieta: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {
