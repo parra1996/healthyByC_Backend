@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Actividad_psicosocials', {
+    await queryInterface.createTable('Actividad_psicosocial', {
       id: {
         autoIncrement: true,
         primaryKey: true,
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       tipo_actividad: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       tipo_actividad_laboral: {
         type: Sequelize.STRING
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Actividad_psicosocials');
+    await queryInterface.dropTable('Actividad_psicosocial');
   }
 };

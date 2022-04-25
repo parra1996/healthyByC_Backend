@@ -14,9 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Receta_adquirida, {
         foreignKey: 'usuarioId'
       });
-      // this.hasMany(models.Pedido, {
-      //   foreignKey: 'usuarioId'
-      // });
     }
   }
   User.init({
