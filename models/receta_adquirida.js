@@ -19,9 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Receta_adquirida.init({
-    recetaId: DataTypes.INTEGER,
+    recetaID: DataTypes.INTEGER,
     usuarioId: DataTypes.INTEGER,
-    timestamps: false
 
   }, {
     sequelize,
