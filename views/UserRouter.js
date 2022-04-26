@@ -16,6 +16,10 @@ router.post('/register',  UserController.register);
 
 router.delete('/:id',isAdmin,  UserController.delete_by_id);
 
+router.put('/', UserController.modify_password);
+
+// router.put('/:id',  UserController.modify_password);
+
 
 
 

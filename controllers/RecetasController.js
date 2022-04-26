@@ -8,7 +8,7 @@ const RecetasController = {};
 
 RecetasController.get_all = (req, res) => {
     try {
-        Recetas.findAll()
+        Receta.findAll()
             .then(data => {
                 res.send(data)
             });
@@ -70,4 +70,22 @@ RecetasController.bring_by_id = (req, res) => {
     });
 }
 
+RecetasController.delete_by_id = (req, res) => {
+    let id = req.params.id;
+
+    try {
+
+        Receta.destroy({
+            where : { id : id },
+            truncate : false
+        })
+        .then(reeceta => {
+            console.log(reeceta);
+            res.send(`La receta con la id: ${id} ha sido eliminado`);
+        })
+
+    } catch (error) {
+        res.send(error);
+    }
+}
 module.exports = RecetasController;

@@ -5,9 +5,11 @@ const RecetasController = require('../controllers/RecetasController');
 
 router.get('/',  RecetasController.get_all);
 
-router.get('/',  RecetasController.bring_by_id);
+router.get('/:id',  RecetasController.bring_by_id);
 
 router.post('/',  RecetasController.registrar_receta);
+
+router.delete('/:id',  RecetasController.delete_by_id);
 
 
 module.exports = router;

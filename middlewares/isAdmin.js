@@ -1,11 +1,11 @@
-const { Usuario } = require('../models/index');
+const { User } = require('../models/index');
 
 
 module.exports = (req, res, next) => {
 
     let id = req.body.id;
 
-    Usuario.findOne({
+    User.findOne({
         where : { id : id }
     }).then(usuarioEncontrado => {
 

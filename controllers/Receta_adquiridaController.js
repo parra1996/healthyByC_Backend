@@ -47,4 +47,22 @@ Receta_adquiridaController.new_acquisition = async (req, res) => {
     }
 }
 
+Receta_adquiridaController.delete_by_id = async (req, res) => {
+    let id = req.params.id;
+
+    try {
+
+        Receta_adquirida.destroy({
+            where : { id : id },
+            truncate : false
+        })
+        .then(Receta_adquirida => {
+            console.log(Receta_adquirida);
+            res.send(`La receta con la id ${id} ha sido eliminado`);
+        })
+
+    } catch (error) {
+        res.send(error);
+    }
+}
 module.exports = Receta_adquiridaController;

@@ -124,6 +124,57 @@ UserController.login = (req, res) => {
     })
 }
 
+UserController.modify_password = (req, res) => {
+    let id = req.body.id;
+
+    let oldPassword = req.body.oldPassword;
+
+    let newPassword = req.body.newPassword;
+
+    User.findOne({
+        where : { id : id}
+    }).then(userFound => {
+
+        if(userFound){
+
+            if (bcrypt.compareSync(oldPassword, userFound.contrasena)) {
+
+                //En caso de que el Password antiguo SI sea el correcto....
+
+                //1er paso..encriptamos el nuevo password....
+
+                newPassword = bcrypt.hashSync(newPassword, Number.parseInt(authConfig.rounds)); 
+
+                //2do paso guardamos el nuevo password en la base de datos
+
+                let data = {
+                    contrasena: newPassword
+                }
+
+                User.update(data, {
+                    where: {id : id}
+                })
+                .then(updated => {
+                    res.send(updated);
+                })
+                .catch((error) => {
+                    res.status(401).json({ msg: `Ha ocurrido un error actualizando el password`});
+                });
+
+            }else{
+                res.status(401).json({ msg: "Usuario o contraseña inválidos" });
+            }
+
+
+        }else{
+            res.send(`Usuario no encontrado`);
+        }
+
+    }).catch((error => {
+        res.send(error);
+    }));
+}
+
 UserController.delete_by_id = (req, res) => {
 
     let id = req.params.id;
