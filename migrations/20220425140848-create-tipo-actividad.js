@@ -6,16 +6,17 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Actividad_psicosocial',
+          as: 'id_actividad'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       tipo_actividad: {
         type: Sequelize.STRING,
-        // references: {
-        //   model: 'actividad_psicosocial',
-        //   key: 'tipo_actividadID'
-        // },
-        // onUpdate: 'CASCADE',
-        // onDelete: 'CASCADE'
+      
       },
       duracion: {
         type: Sequelize.STRING

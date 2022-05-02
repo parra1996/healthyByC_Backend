@@ -20,11 +20,11 @@ module.exports = {
       actividades: {
         type: Sequelize.STRING
       },
-      tipo_actividadID: {
-        type: Sequelize.STRING,
+      id_actividad: {
+        type: Sequelize.INTEGER,
         // references: {
-        //   model: 'tipo_actividad',
-        //   key: 'tipo_actividadID'
+        //   model: 'Tipo_actividad',
+        //   as: 'id'
         // },
         // onUpdate: 'CASCADE',
         // onDelete: 'CASCADE'

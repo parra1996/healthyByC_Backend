@@ -10,8 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // this.hasOne(models.tipo_actividad, {
-      //   foreignKey: 'tipo_actividadID',
+      this.hasOne(models.Tipo_actividad, {
+        foreignKey: 'id',
+      });
+      // this.hasOne(models.Tipo_actividad_laboral, {
+      //   as: 'id',
       // });
     }
   }
@@ -19,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
 
     horas_sueño: DataTypes.INTEGER,
     actividades: DataTypes.STRING,
-    tipo_actividadID: DataTypes.STRING,
-    tipo_actividad_laboral: DataTypes.STRING,
+    id_actividad: DataTypes.INTEGER,
+    id_laboral: DataTypes.INTEGER,
     numero_evacuaciones_diarios: DataTypes.INTEGER,
     estres_diario: DataTypes.STRING,
     frecuencia_bebidas_alcoholicas: DataTypes.STRING,
