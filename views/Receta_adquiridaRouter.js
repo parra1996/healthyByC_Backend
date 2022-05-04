@@ -5,6 +5,8 @@ const Receta_adquiridaController = require('../controllers/Receta_adquiridaContr
 
 router.get('/',  Receta_adquiridaController.get_all);
 
+router.get('/:id',  Receta_adquiridaController.get_by_id);
+
 router.post('/', Receta_adquiridaController.new_acquisition);
 
 router.delete('/:id', Receta_adquiridaController.delete_by_id);

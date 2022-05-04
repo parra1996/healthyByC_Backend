@@ -23,6 +23,19 @@ Receta_adquiridaController.get_all = async (req, res) => {
 
 }
 
+Receta_adquiridaController.get_by_id = async (req, res) => {
+    let id = req.params.id
+    let consulta = ` SELECT users.nombre AS nombre, receta.nombre AS nombre , receta_adquiridas.id AS id,  users.email AS email, receta.imagen AS imagen
+    FROM users INNER JOIN receta_adquiridas 
+    ON users.id = receta_adquiridas.usuarioId INNER JOIN receta
+    ON receta.id = receta_adquiridas.recetaID WHERE users.id = ${id}`;
+    let resultado = await Receta_adquirida.sequelize.query(consulta,{
+        type: Receta_adquirida.sequelize.QueryTypes.SELECT});
+    if(resultado){
+        res.send(resultado);
+    }
+}
+
 Receta_adquiridaController.new_acquisition = async (req, res) => {
 
     try {
