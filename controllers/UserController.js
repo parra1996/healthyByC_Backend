@@ -3,20 +3,20 @@ const {
 } = require('../models/index');
 
 const {
-    Op
+    Op  
 } = require("sequelize");
 const bcrypt = require('bcrypt');
 const authConfig = require('../config/auth');
 const jwt = require('jsonwebtoken');
-
+  
 const UserController = {};
 
 UserController.get_all = (req, res) => {
-    try {
+    try { 
         User.findAll()
             .then(data => {
                 res.send(data)
-            });
+            }); 
     } catch (error) {
         res.send(error)
     }
@@ -88,6 +88,9 @@ UserController.register = (req, res) => {
 
 UserController.login = (req, res) => {
     
+    // let email = req.body.email;
+    // let contrasena = req.body.contrasena;
+    
     let email = req.body.email;
     let contrasena = req.body.contrasena;
 
@@ -99,7 +102,7 @@ UserController.login = (req, res) => {
             res.send("Usuario o contraseña inválido");
         }else {
             //el usuario existe, por lo tanto, vamos a comprobar
-            //si el contrasena es correcto
+            //si el password es correcto
 
             if (bcrypt.compareSync(contrasena, element.contrasena)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
 
@@ -114,7 +117,8 @@ UserController.login = (req, res) => {
                     token: token
                 })
             } else {
-                res.status(401).json({ msg: "Usuario o contraseña inválidos" });
+                // res.status(401).json({ msg: "Usuario o contraseña inválido" });
+                res.send("Usuario o contraseña inválido");
             }
         };
 
@@ -122,6 +126,39 @@ UserController.login = (req, res) => {
     }).catch(error => {
         res.send(error);
     })
+
+    // User.findOne({
+    //     where : {email : email}
+    // }).then(element => {
+
+    //     if(!element){
+    //         res.send("Usuario o contraseña inválido");
+    //     }else {
+    //         //el usuario existe, por lo tanto, vamos a comprobar
+    //         //si el contrasena es correcto
+
+    //         if (bcrypt.compareSync(contrasena, element.contrasena)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
+
+    //             console.log(element.contrasena);
+
+    //             let token = jwt.sign({ usuario: element }, authConfig.secret, {
+    //                 expiresIn: authConfig.expires
+    //             });
+
+    //             res.json({
+    //                 usuario: element,  
+    //                 token: token
+    //             })
+    //         } else {
+    //             res.status(401).json({ message: "Usuario o contraseña inválidos" });
+    //             // res.send("Usuario o contraseña inválido");
+    //         }
+    //     };
+
+
+    // }).catch(error => {
+    //     res.send(error);
+    // })
 }
 
 UserController.modify_password = (req, res) => {

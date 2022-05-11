@@ -47,7 +47,7 @@ Receta_adquiridaController.new_acquisition = async (req, res) => {
                 recetaID: body.recetaID,
                 usuarioId: body.usuarioId,
             })
-            .then(receta => {
+            .then(receta => { 
                 if (receta) {
                     res.send(receta)
                 } else {
@@ -61,18 +61,28 @@ Receta_adquiridaController.new_acquisition = async (req, res) => {
 }
 
 Receta_adquiridaController.delete_by_id = async (req, res) => {
-    let id = req.params.id;
+    
 
     try {
 
-        Receta_adquirida.destroy({
-            where : { id : id },
-            truncate : false
-        })
-        .then(Receta_adquirida => {
-            console.log(Receta_adquirida);
-            res.send(`La receta con la id ${id} ha sido eliminado`);
-        })
+        let id = req.params.id
+
+        let consulta = `DELETE FROM receta_adquiridas WHERE (id = ${id});`;
+    
+        try {
+            let resultado = await Receta_adquirida.sequelize.query(consulta, {
+                type: Receta_adquirida.sequelize.QueryTypes.DELETE
+            });
+    
+            if (resultado !== 0) {
+                res.send("Pedido eliminado con exito!");
+            } else {
+                res.send("Ha ocurrido algun error al borrar los pedidos")
+            }
+    
+        } catch (error) {
+            res.send(error)
+        }
 
     } catch (error) {
         res.send(error);
