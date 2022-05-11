@@ -18,9 +18,8 @@ router.delete('/:id',auth, isAdmin, UserController.delete_by_id);
 
 router.put('/', auth, UserController.modify_password);
 
+router.put('/:id/clave', auth, UserController.modify_user);
 
-
- 
 
 
 

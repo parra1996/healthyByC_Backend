@@ -212,6 +212,42 @@ UserController.modify_password = (req, res) => {
     }));
 }
 
+UserController.modify_user = (req, res) => {
+    
+    let id = req.params.id;
+    let claveAnterior = req.body.claveAnterior;
+    let claveNueva = req.body.claveNueva;
+    User.findOne({
+        where: { id: id }
+    }).then(usuarioEncontrado => {
+        if (usuarioEncontrado) {
+            if (bcrypt.compareSync(claveAnterior, usuarioEncontrado.contrasena)) {
+                claveNueva = bcrypt.hashSync(claveNueva, Number.parseInt(authConfig.rounds));
+                let data = {
+                    contrasena: claveNueva
+                }
+                usuarioEncontrado.update(data, {})
+                    .then(actualiza => {
+                        res.send(actualiza);
+                    })
+                    .catch((error) => {
+                        res.status(400).json({
+                            msg:' Ocurrió algún error al actualizar la contraseña.',
+                            error: error
+                        });
+                    });
+            } else {
+                res.status(401).json({ msg: "Usuario o contraseña inválidos." });
+            }
+        } else {
+            res.status(404).send('Usuario no encontrado.');
+        }
+    }).catch((error => {
+        res.status(400).json({ msg: "sucedió algo inesperado"});
+    }));
+};
+
+
 UserController.delete_by_id = (req, res) => {
 
     let id = req.params.id;
