@@ -237,13 +237,14 @@ UserController.modify_user = (req, res) => {
                         });
                     });
             } else {
+                
                 res.status(401).json({ msg: "Usuario o contraseña inválidos." });
             }
         } else {
             res.status(404).send('Usuario no encontrado.');
         }
     }).catch((error => {
-        res.status(400).json({ msg: "sucedió algo inesperado"});
+        res.status(400).json({ msg: "sucedió algo inesperado"}); 
     }));
 };
 

@@ -7,12 +7,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+      },
+      dietetico_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+          references: {
+            model: 'Users',
+            key: 'id'
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE'
       },
       numero_comidas_diarias: {
         type: Sequelize.INTEGER
