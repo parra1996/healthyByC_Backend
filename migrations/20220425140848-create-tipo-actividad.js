@@ -7,9 +7,13 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+      },
+      t_actividad_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'Actividad_psicosocial',
-          as: 'id_actividad'
+          key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

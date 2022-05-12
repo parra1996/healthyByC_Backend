@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.user, {
           foreignKey: 'psicosocial_id',
         });
-      // this.hasOne(models.Tipo_actividad, {
-      //   foreignKey: 'id',
-      // });
+      this.hasOne(models.Tipo_actividad, {
+        foreignKey: 't_actividad_id',
+      });
       // this.hasOne(models.Tipo_actividad_laboral, {
       //   as: 'id',
       // });
