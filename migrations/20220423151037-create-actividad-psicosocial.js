@@ -7,12 +7,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+      },
+      psicosocial_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+          references: {
+            model: 'Users',
+            key: 'id'
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE'
       },
       horas_sueño: {
         type: Sequelize.INTEGER
@@ -22,12 +26,6 @@ module.exports = {
       },
       id_actividad: {
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: 'Tipo_actividad',
-        //   as: 'id'
-        // },
-        // onUpdate: 'CASCADE',
-        // onDelete: 'CASCADE'
       },
       tipo_actividad_laboral: {
         type: Sequelize.STRING

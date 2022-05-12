@@ -11,11 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.User, {
-        foreignKey: 'datos_antropometricoID'
+        foreignKey: 'antropometricos_id'
       });
     }
   }
   Datos_antropometricos.init({
+    antropometricos_id: DataTypes.INTEGER,
     altura: DataTypes.FLOAT,
     peso_ayunas: DataTypes.FLOAT,
     medidias_cm:  DataTypes.FLOAT,

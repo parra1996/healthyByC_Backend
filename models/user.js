@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.datos_dietetico,{
         foreignKey: 'dietetico_id'
       });
+      this.hasOne(models.datos_antropometricos,{
+        foreignKey: 'antropometricos_id'
+      });
+      this.hasOne(models.actividad_psicosocial,{
+        foreignKey: 'psicosocial_id'
+      });
     }
   }
   User.init({

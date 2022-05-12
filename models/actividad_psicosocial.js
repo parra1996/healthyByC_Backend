@@ -10,16 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasOne(models.Tipo_actividad, {
-        foreignKey: 'id',
-      });
+      this.belongsTo(models.user, {
+          foreignKey: 'psicosocial_id',
+        });
+      // this.hasOne(models.Tipo_actividad, {
+      //   foreignKey: 'id',
+      // });
       // this.hasOne(models.Tipo_actividad_laboral, {
       //   as: 'id',
       // });
     }
   }
   Actividad_psicosocial.init({
-
+    psicosocial_id: DataTypes.INTEGER,
     horas_sueño: DataTypes.INTEGER,
     actividades: DataTypes.STRING,
     id_actividad: DataTypes.INTEGER,
