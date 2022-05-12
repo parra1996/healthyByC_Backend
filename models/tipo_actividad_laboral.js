@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.Actividad_psicosocial, {
-        as: 'laboral_id',
+        as: 'Laboral_id',
       })
     }
   }

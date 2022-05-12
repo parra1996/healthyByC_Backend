@@ -22,6 +22,6 @@ app.use(router);
 
 
 db.then(()=>{
-    app.listen(PORT, ()=> console.log(`Server on port ${PORT}`)); //Conectado a la base de datos
+    app.listen(PORT, ()=> console.log(`Server on port ${PORT}`)); 
 })
 .catch((err)=> console.log(err.message));   

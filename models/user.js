@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Receta_adquirida, {
         foreignKey: 'usuarioId'
       });
-      this.hasOne(models.datos_dietetico,{
+      this.hasOne(models.Datos_dietetico,{
         foreignKey: 'dietetico_id'
       });
-      this.hasOne(models.datos_antropometricos,{
+      this.hasOne(models.Datos_antropometricos,{
         foreignKey: 'antropometricos_id'
       });
-      this.hasOne(models.actividad_psicosocial,{
+      this.hasOne(models.Actividad_psicosocial,{
         foreignKey: 'psicosocial_id'
       });
     }
