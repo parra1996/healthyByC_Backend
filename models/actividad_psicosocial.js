@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.Tipo_actividad, {
         foreignKey: 't_actividad_id',
       });
-      // this.hasOne(models.Tipo_actividad_laboral, {
-      //   as: 'id',
-      // });
+      this.hasOne(models.Tipo_actividad_laboral, {
+        as: 'a_laboral_id',
+      });
     }
   }
   Actividad_psicosocial.init({
