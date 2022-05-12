@@ -8,12 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      t_actividad_id: {
+      actividad_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Actividad_psicosocial',
-          key: 'id'
+          as: 'actividad_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'

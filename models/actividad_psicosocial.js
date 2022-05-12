@@ -14,19 +14,16 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'psicosocial_id',
         });
       this.hasOne(models.Tipo_actividad, {
-        foreignKey: 't_actividad_id',
+        foreignKey: 'actividad_id',
       });
       this.hasOne(models.Tipo_actividad_laboral, {
-        as: 'a_laboral_id',
+        as: 'laboral_id',
       });
     }
   }
   Actividad_psicosocial.init({
-    psicosocial_id: DataTypes.INTEGER,
     horas_sueño: DataTypes.INTEGER,
     actividades: DataTypes.STRING,
-    id_actividad: DataTypes.INTEGER,
-    id_laboral: DataTypes.INTEGER,
     numero_evacuaciones_diarios: DataTypes.INTEGER,
     estres_diario: DataTypes.STRING,
     frecuencia_bebidas_alcoholicas: DataTypes.STRING,

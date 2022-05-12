@@ -8,15 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      a_laboral_id: {
+      laboral_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Actividad_psicosocial',
-          key: 'id'
+          as: 'laboral_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
+      },
+      tipo_actividad: {
+        type: Sequelize.STRING
       },
       frecuencia: {
         type: Sequelize.STRING

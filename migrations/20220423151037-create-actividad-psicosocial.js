@@ -24,12 +24,6 @@ module.exports = {
       actividades: {
         type: Sequelize.STRING
       },
-      id_actividad: {
-        type: Sequelize.INTEGER,
-      },
-      tipo_actividad_laboral: {
-        type: Sequelize.STRING
-      },
       numero_evacuaciones_diarios: {
         type: Sequelize.INTEGER
       },

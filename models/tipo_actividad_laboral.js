@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.Actividad_psicosocial, {
-        as: 'a_laboral_id',
+        as: 'laboral_id',
       })
     }
   }
   Tipo_actividad_laboral.init({
-    a_laboral_id: DataTypes.STRING,
+    laboral_id: DataTypes.STRING,
+    tipo_actividad: DataTypes.STRING,
     frecuencia: DataTypes.STRING,
     duracion: DataTypes.STRING,
     timestamps: false
