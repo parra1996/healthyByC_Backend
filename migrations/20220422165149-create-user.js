@@ -26,9 +26,6 @@ module.exports = {
       sexo: {
         type: Sequelize.BOOLEAN
       },
-      objetivos_dieteticos: {
-        type: Sequelize.STRING
-      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,

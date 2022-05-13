@@ -12,10 +12,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       ingredientes: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       preparacion: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
+      },
+      preparacion_2: {
+        type: Sequelize.TEXT
       },
       imagen: {
         type: Sequelize.STRING

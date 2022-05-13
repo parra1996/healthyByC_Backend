@@ -23,6 +23,7 @@ RecetasController.registrar_receta = (req, res) => {
     let nombre = req.body.nombre;
     let ingredientes = req.body.ingredientes;
     let preparacion = req.body.preparacion;
+    let preparacion_2 = req.body.preparacion_2;
     let imagen = req.body.imagen;
 
     //Comprobación de errores.....
@@ -46,6 +47,7 @@ RecetasController.registrar_receta = (req, res) => {
                     nombre: nombre,
                     ingredientes: ingredientes,
                     preparacion: preparacion,
+                    preparacion_2: preparacion_2,
                     imagen: imagen
                 }).then(receta => {
                     res.send(`${receta.nombre}, agregada a la base de datos`);

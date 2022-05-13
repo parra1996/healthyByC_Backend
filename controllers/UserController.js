@@ -27,17 +27,20 @@ UserController.register = (req, res) => {
     let fecha_nacimiento = req.body.fecha_nacimiento;
     let profesion = req.body.profesion;
     let sexo = req.body.sexo;
-    let objetivos_dieteticos = req.body.objetivos_dieteticos;
     let rol = req.body.rol;
     console.log("antes de encriptar", req.body.contrasena);
     let contrasena = bcrypt.hashSync(req.body.contrasena, Number.parseInt(authConfig.rounds));
 
     console.log("despues de encriptar", contrasena);
 
-    if (sexo == "hombre") {
+   
+
+    if (sexo === "hombre") {
+        sexo = false;
+    } else if(sexo === "mujer"){
         sexo = true;
     } else {
-        sexo = false;
+        res.send("El sexo debe ser hombre o mujer");
     }
     console.log(sexo);
 
@@ -61,14 +64,13 @@ UserController.register = (req, res) => {
                     edad: edad,
                     profesion: profesion,
                     sexo: sexo,
-                    objetivos_dieteticos: objetivos_dieteticos,
                     email: email,
                     contrasena: contrasena,
                     rol: rol
                 }).then(usuario => {
                     res.send(`${usuario.nombre}, te has registrado con exito`);
                 })
-                .catch((error) => {
+                .catch((error) => { 
                     res.send(error);
                 });
 
@@ -84,9 +86,6 @@ UserController.register = (req, res) => {
 
 UserController.login = (req, res) => {
     
-    // let email = req.body.email;
-    // let contrasena = req.body.contrasena;
-    
     let email = req.body.email;
     let contrasena = req.body.contrasena;
 
@@ -97,12 +96,8 @@ UserController.login = (req, res) => {
         if(!element){
             res.send("Usuario o contraseña inválido");
         }else {
-            //el usuario existe, por lo tanto, vamos a comprobar
-            //si el password es correcto
 
-            if (bcrypt.compareSync(contrasena, element.contrasena)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
-
-                console.log(element.contrasena);
+            if (bcrypt.compareSync(contrasena, element.contrasena)) { 
 
                 let token = jwt.sign({ usuario: element }, authConfig.secret, {
                     expiresIn: authConfig.expires
@@ -113,7 +108,6 @@ UserController.login = (req, res) => {
                     token: token
                 })
             } else {
-                // res.status(401).json({ msg: "Usuario o contraseña inválido" });
                 res.send("Usuario o contraseña inválido");
             }
         };
@@ -122,39 +116,7 @@ UserController.login = (req, res) => {
     }).catch(error => {
         res.send(error);
     })
-
-    // User.findOne({
-    //     where : {email : email}
-    // }).then(element => {
-
-    //     if(!element){
-    //         res.send("Usuario o contraseña inválido");
-    //     }else {
-    //         //el usuario existe, por lo tanto, vamos a comprobar
-    //         //si el contrasena es correcto
-
-    //         if (bcrypt.compareSync(contrasena, element.contrasena)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
-
-    //             console.log(element.contrasena);
-
-    //             let token = jwt.sign({ usuario: element }, authConfig.secret, {
-    //                 expiresIn: authConfig.expires
-    //             });
-
-    //             res.json({
-    //                 usuario: element,  
-    //                 token: token
-    //             })
-    //         } else {
-    //             res.status(401).json({ message: "Usuario o contraseña inválidos" });
-    //             // res.send("Usuario o contraseña inválido");
-    //         }
-    //     };
-
-
-    // }).catch(error => {
-    //     res.send(error);
-    // })
+    
 }
 
 UserController.modify_password = (req, res) => {
@@ -172,13 +134,7 @@ UserController.modify_password = (req, res) => {
 
             if (bcrypt.compareSync(oldPassword, userFound.contrasena)) {
 
-                //En caso de que el Password antiguo SI sea el correcto....
-
-                //1er paso..encriptamos el nuevo password....
-
                 newPassword = bcrypt.hashSync(newPassword, Number.parseInt(authConfig.rounds)); 
-
-                //2do paso guardamos el nuevo password en la base de datos
 
                 let data = {
                     contrasena: newPassword
@@ -197,8 +153,6 @@ UserController.modify_password = (req, res) => {
             }else{
                 res.status(401).json({ msg: "Usuario o contraseña inválidos" });
             }
-
-
         }else{
             res.send(`Usuario no encontrado`);
         }
@@ -248,9 +202,7 @@ UserController.modify_user = (req, res) => {
 UserController.delete_by_id = (req, res) => {
 
     let id = req.params.id;
-
     try {
-
         User.destroy({
                 where: {
                     id: id
@@ -261,12 +213,9 @@ UserController.delete_by_id = (req, res) => {
                 console.log(usuarioEliminado);
                 res.send(`El usuario con la id ${id} ha sido eliminado`);
             })
-
     } catch (error) {
         res.send(error);
     }
-
 }
-
 
 module.exports = UserController;
