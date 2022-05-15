@@ -4,7 +4,7 @@ const { Op  } = require("sequelize");
 const bcrypt = require('bcrypt');
 const authConfig = require('../config/auth');
 const jwt = require('jsonwebtoken');
-  
+
 const UserController = {};
 
 UserController.get_all = (req, res) => {
